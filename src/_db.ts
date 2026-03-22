@@ -1,16 +1,16 @@
-type Game = {
+export type Game = {
   id: string;
   title: string;
   platform: string[];
 };
 
-type Author = {
+export type Author = {
   id: string;
   name: string;
   verified: boolean;
 };
 
-type Review = {
+export type Review = {
   id: string;
   rating: number;
   content: string;
