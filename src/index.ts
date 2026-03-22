@@ -2,19 +2,32 @@ import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import { typeDefs } from './schema';
 import db, { authors } from './_db';
+import type { Game, Review, Author } from './_db';
 
 const resolvers = {
   Query: {
-    games() {
+    games(): Game[] {
       return db.games;
     },
 
-    reviews() {
+    game(_, args: { id: string }): Game {
+      return db.games.find((game) => game.id === args.id);
+    },
+
+    reviews(): Review[] {
       return db.reviews;
     },
 
-    authors() {
+    review(_, args: { id: string }): Review {
+      return db.reviews.find((review) => review.id === args.id);
+    },
+
+    authors(): Author[] {
       return db.authors;
+    },
+
+    author(_, args: { id: string }): Author {
+      return db.authors.find((author) => author.id === args.id);
     },
   },
 };
